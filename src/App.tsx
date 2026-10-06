@@ -217,7 +217,15 @@ export const App: React.FC = () => {
           />
         )}
 
-        {currentTab === 'about' && <AboutView />}
+        {currentTab === 'about' && (
+          <AboutView
+            onNavigate={(tab) => {
+              setCurrentTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectYear={handleSelectYear}
+          />
+        )}
       </main>
 
       {/* Global Interactive Modals & Emulators */}
