@@ -18,6 +18,8 @@ import {
   ExternalLink,
   ChevronRight,
   Terminal,
+  Code2,
+  User,
 } from 'lucide-react';
 import { audioService } from '../services/audioService';
 
@@ -398,20 +400,101 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onSelectYear }
         </div>
       </section>
 
-      {/* 👨💻 8. CREATOR SECTION: BUILT WITH CURIOSITY */}
-      <section className="glass-card rounded-3xl p-6 sm:p-8 border border-zinc-800 space-y-3">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/40">
-            <Terminal className="w-5 h-5" />
+      {/* 👨💻 8. CREATOR SECTION: MEET THE CREATOR */}
+      <section className="glass-panel rounded-3xl p-6 sm:p-10 border border-zinc-800/80 hover:border-cyan-500/40 transition-all shadow-2xl relative overflow-hidden space-y-6">
+        {/* Subtle background ambient glow */}
+        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-5">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-cyan-950/80 text-cyan-400 border border-cyan-500/40 shadow-md shadow-cyan-950/40">
+              <Code2 className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-widest block">
+                The Mind Behind The Machine
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight uppercase">
+                Meet The Creator
+              </h3>
+            </div>
           </div>
-          <h3 className="text-xl font-bold text-white tracking-tight uppercase">
-            Built with Curiosity
-          </h3>
+
+          <div className="self-start sm:self-center">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700/80 text-[11px] font-mono text-zinc-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Created by Harsh Sisodia
+            </span>
+          </div>
         </div>
 
-        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-          Internet Time Machine was crafted with deep curiosity for technology history, open web preservation, and educational interface design. Powered by modern web technologies, zero-dependency Web Audio synthesizers, and factually curated registries.
-        </p>
+        {/* Creator Profile Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          {/* Avatar / Identity Info */}
+          <div className="lg:col-span-4 p-6 rounded-2xl bg-zinc-900/70 border border-zinc-800 text-center flex flex-col items-center justify-center space-y-3">
+            {/* Avatar Icon with Time-travel Cosmic Glow */}
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-cyan-500 via-sky-500 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/20">
+              <div className="w-full h-full rounded-[14px] bg-zinc-950 flex items-center justify-center text-3xl select-none">
+                🚀
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-xl font-black text-white tracking-tight">
+                Harsh Sisodia
+              </h4>
+              <span className="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider block mt-0.5">
+                Creator & Developer
+              </span>
+            </div>
+
+            <p className="text-[11px] text-zinc-400 font-mono">
+              Independent Digital Project
+            </p>
+          </div>
+
+          {/* Personal Bio & Visual Badges */}
+          <div className="lg:col-span-8 space-y-5">
+            {/* Personal Introduction Quote */}
+            <blockquote className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 text-sm sm:text-base text-zinc-200 leading-relaxed font-normal italic relative">
+              <span className="text-3xl text-cyan-500/40 font-serif absolute top-2 left-3">“</span>
+              <p className="relative pl-4">
+                Hi! I'm Harsh Sisodia, a 12-year-old creator and developer who loves technology, gaming, AI, and building interesting digital projects. I created Internet Time Machine to make exploring the history of the internet and technology fun, interactive, and accessible.
+              </p>
+            </blockquote>
+
+            {/* Visual Timeline / Attribute Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="p-3.5 rounded-xl bg-cyan-950/20 border border-cyan-500/30 text-center">
+                <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block mb-0.5">
+                  AGE
+                </span>
+                <span className="text-sm font-black text-white font-mono tracking-tight">
+                  12 YEARS OLD
+                </span>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-center">
+                <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest block mb-0.5">
+                  ROLE
+                </span>
+                <span className="text-sm font-black text-white font-mono tracking-tight">
+                  CREATOR
+                </span>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-500/30 text-center">
+                <span className="text-[10px] font-mono text-amber-400 uppercase tracking-widest block mb-0.5">
+                  PASSION
+                </span>
+                <span className="text-xs sm:text-sm font-black text-white font-mono tracking-tight">
+                  TECH & GAMING ENTHUSIAST
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 🚀 9. CALL TO ACTION */}
