@@ -345,6 +345,11 @@ class RetroAudioService {
   public getIsDialupPlaying(): boolean {
     return this.isDialupPlaying;
   }
+
+  public playTeleport(): void {
+    this.playTimeWarp();
+  }
 }
+
 
 export const audioService = new RetroAudioService();

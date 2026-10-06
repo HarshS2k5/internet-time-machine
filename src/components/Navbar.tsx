@@ -15,6 +15,7 @@ import {
   Bot,
   Layers,
   Info,
+  Archive,
 } from 'lucide-react';
 import { audioService } from '../services/audioService';
 
@@ -25,6 +26,8 @@ interface NavbarProps {
   onOpenTimeWarp: () => void;
   onOpenAudio: () => void;
   onOpenPassport: () => void;
+  onOpenDocent?: () => void;
+  onOpenTimeCapsule?: () => void;
   crtEnabled: boolean;
   onToggleCrt: () => void;
   passportCount: number;
@@ -37,10 +40,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTimeWarp,
   onOpenAudio,
   onOpenPassport,
+  onOpenDocent,
+  onOpenTimeCapsule,
   crtEnabled,
   onToggleCrt,
   passportCount,
 }) => {
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -165,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onOpenPassport();
             }}
             className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-purple-400 hover:bg-zinc-850 hover:border-zinc-700 transition-all relative"
-            title="Time Traveler Passport"
+            title="Time Traveler Passport & Quests"
           >
             <Compass className="w-4 h-4" />
             {passportCount > 0 && (
@@ -174,6 +180,35 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             )}
           </button>
+
+          {/* AI History Docent */}
+          {onOpenDocent && (
+            <button
+              onClick={() => {
+                audioService.playClick();
+                onOpenDocent();
+              }}
+              className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-cyan-400 hover:bg-zinc-850 hover:border-zinc-700 transition-all hidden sm:flex"
+              title="AI Museum Docent"
+            >
+              <Bot className="w-4 h-4" />
+            </button>
+          )}
+
+          {/* Time Capsule */}
+          {onOpenTimeCapsule && (
+            <button
+              onClick={() => {
+                audioService.playClick();
+                onOpenTimeCapsule();
+              }}
+              className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-amber-400 hover:bg-zinc-850 hover:border-zinc-700 transition-all hidden sm:flex"
+              title="Personal Digital Time Capsule"
+            >
+              <Archive className="w-4 h-4" />
+            </button>
+          )}
+
 
           {/* Mobile Hamburger Menu Toggle */}
           <button

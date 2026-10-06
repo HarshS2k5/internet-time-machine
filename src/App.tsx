@@ -7,6 +7,9 @@ import { SearchModal } from './components/SearchModal';
 import { PassportModal } from './components/PassportModal';
 import { WebsiteSimulatorModal } from './components/WebsiteSimulatorModal';
 import { EventDetailModal } from './components/EventDetailModal';
+import { AiHistoryGuideModal } from './components/AiHistoryGuideModal';
+import { TimeCapsuleModal } from './components/TimeCapsuleModal';
+
 
 // Views
 import { HomeView } from './views/HomeView';
@@ -34,7 +37,10 @@ export const App: React.FC = () => {
   const [isTimeWarpOpen, setIsTimeWarpOpen] = useState<boolean>(false);
   const [isAudioOpen, setIsAudioOpen] = useState<boolean>(false);
   const [isPassportOpen, setIsPassportOpen] = useState<boolean>(false);
+  const [isDocentOpen, setIsDocentOpen] = useState<boolean>(false);
+  const [isTimeCapsuleOpen, setIsTimeCapsuleOpen] = useState<boolean>(false);
   const [activeSimulator, setActiveSimulator] = useState<string | null>(null);
+  const [konamiToast, setKonamiToast] = useState<boolean>(false);
 
   // CRT Scanlines state
   const [crtEnabled, setCrtEnabled] = useState<boolean>(() => {
@@ -88,8 +94,15 @@ export const App: React.FC = () => {
     }
   };
 
-  // Global Keyboard shortcuts
+  // Global Keyboard shortcuts & Konami Code easter egg
   useEffect(() => {
+    const konamiSequence = [
+      'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+      'b', 'a'
+    ];
+    let konamiIndex = 0;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       // Ctrl+K or / opens search
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -99,10 +112,25 @@ export const App: React.FC = () => {
         e.preventDefault();
         setIsSearchOpen(true);
       }
+
+      // Check Konami Code
+      if (e.key === konamiSequence[konamiIndex] || e.key.toLowerCase() === konamiSequence[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiSequence.length) {
+          audioService.playTeleport();
+          handleUnlockStamp('konami-unlocked');
+          setKonamiToast(true);
+          setTimeout(() => setKonamiToast(false), 6000);
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
 
   // Determine ambient era color for current year when on timeline
   const getEraAmbientGlow = () => {
@@ -130,10 +158,13 @@ export const App: React.FC = () => {
         onOpenTimeWarp={() => setIsTimeWarpOpen(true)}
         onOpenAudio={() => setIsAudioOpen(true)}
         onOpenPassport={() => setIsPassportOpen(true)}
+        onOpenDocent={() => setIsDocentOpen(true)}
+        onOpenTimeCapsule={() => setIsTimeCapsuleOpen(true)}
         crtEnabled={crtEnabled}
         onToggleCrt={toggleCrt}
         passportCount={visitedYears.length}
       />
+
 
       {/* Breadcrumb Bar for Deep Navigation */}
       {currentTab !== 'home' && (
@@ -214,6 +245,7 @@ export const App: React.FC = () => {
           <CategoryExploreView
             onSelectEvent={(evt) => setActiveEvent(evt)}
             onSelectYear={handleSelectYear}
+            onUnlockStamp={handleUnlockStamp}
           />
         )}
 
@@ -227,6 +259,21 @@ export const App: React.FC = () => {
           />
         )}
       </main>
+
+      {/* Secret Konami Code Toast Banner */}
+      {konamiToast && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-white/40 animate-bounce flex items-center gap-3">
+          <span className="text-2xl">👾</span>
+          <div>
+            <div className="font-extrabold text-sm tracking-wide">
+              1337 RETRO CHEAT CODE UNLOCKED!
+            </div>
+            <div className="text-xs text-white/90">
+              Konami Code sequence recognized: +200 Scavenger Points & Secret Stamp earned!
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Global Interactive Modals & Emulators */}
       <TimeWarpModal
@@ -254,6 +301,20 @@ export const App: React.FC = () => {
         visitedYears={visitedYears}
         unlockedStamps={unlockedStamps}
         onSelectYear={handleSelectYear}
+        onNavigateTab={(tab) => setCurrentTab(tab)}
+      />
+
+      <AiHistoryGuideModal
+        isOpen={isDocentOpen}
+        onClose={() => setIsDocentOpen(false)}
+        onSelectYear={handleSelectYear}
+        onUnlockStamp={handleUnlockStamp}
+      />
+
+      <TimeCapsuleModal
+        isOpen={isTimeCapsuleOpen}
+        onClose={() => setIsTimeCapsuleOpen(false)}
+        onUnlockStamp={handleUnlockStamp}
       />
 
       <WebsiteSimulatorModal
@@ -262,6 +323,7 @@ export const App: React.FC = () => {
         initialSimId={activeSimulator || 'google-1998'}
         onUnlockedStamp={handleUnlockStamp}
       />
+
 
       <EventDetailModal
         event={activeEvent}
@@ -303,16 +365,23 @@ export const App: React.FC = () => {
             <button onClick={() => setCurrentTab('tech')} className="hover:text-cyan-400">
               Technology
             </button>
-            <button onClick={() => setCurrentTab('social')} className="hover:text-cyan-400">
-              Social Media
+            <button onClick={() => setCurrentTab('categories')} className="hover:text-cyan-400">
+              Exhibition Wings
             </button>
-            <button onClick={() => setCurrentTab('ai')} className="hover:text-cyan-400">
-              AI History
+            <button onClick={() => setIsDocentOpen(true)} className="hover:text-cyan-400">
+              AI Docent
+            </button>
+            <button onClick={() => setIsTimeCapsuleOpen(true)} className="hover:text-amber-400">
+              Time Capsule
+            </button>
+            <button onClick={() => setIsPassportOpen(true)} className="hover:text-purple-400">
+              Passport & Quests
             </button>
             <button onClick={() => setCurrentTab('about')} className="hover:text-cyan-400">
-              About & Sources
+              About & Creator
             </button>
           </div>
+
 
           <div className="text-zinc-500 text-center md:text-right text-[11px] font-mono">
             <span>Built with React 19, TypeScript & Web Audio</span>

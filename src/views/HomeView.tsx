@@ -18,9 +18,9 @@ import {
 } from 'lucide-react';
 import { ERAS_DATA } from '../data/erasData';
 import { HISTORICAL_EVENTS } from '../data/historicalEventsData';
-import { KEY_YEARS_DATA } from '../data/yearlyData';
 import { HistoricalEvent, EraId } from '../types/timeline';
 import { audioService } from '../services/audioService';
+import { ThisDayInHistory } from '../components/ThisDayInHistory';
 
 interface HomeViewProps {
   onNavigate: (tab: string) => void;
@@ -129,7 +129,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </button>
           </div>
         </div>
+
+        {/* This Day in Internet History Widget */}
+        <div className="mt-8 max-w-4xl mx-auto">
+          <ThisDayInHistory onSelectYear={onSelectYear} />
+        </div>
       </section>
+
 
       {/* Popular Eras Section */}
       <section className="space-y-6">

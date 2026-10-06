@@ -13,7 +13,11 @@ export type CategoryType =
   | 'ai' 
   | 'internet' 
   | 'social' 
-  | 'media';
+  | 'media'
+  | 'tech'
+  | 'websites'
+  | 'eras';
+
 
 export interface Era {
   id: EraId;
@@ -164,3 +168,116 @@ export interface CategoryInfo {
   color: string;
   accentHex: string;
 }
+
+export interface BrowserMilestone {
+  id: string;
+  name: string;
+  year: number;
+  developer: string;
+  engine: string;
+  importance: string;
+  majorFeatures: string[];
+  milestones: string[];
+  whatHappened: string;
+  iconColor: string;
+  badge: string;
+}
+
+export interface LostTechItem {
+  id: string;
+  title: string;
+  category: 'Website' | 'Service' | 'Browser' | 'Hardware/Gadget' | 'Standard/Plugin' | 'Community';
+  lifespan: string;
+  birthYear: number;
+  deathYear?: number;
+  whatItWas: string;
+  whyItMattered: string;
+  whatKilledIt: string;
+  whatReplacedIt: string;
+  image: string;
+}
+
+export interface HistoryMapNode {
+  id: string;
+  label: string;
+  year: number;
+  category: CategoryType;
+  summary: string;
+  connections: string[];
+}
+
+export interface SpeedPreset {
+  era: string;
+  year: number;
+  name: string;
+  speedKbps: number;
+  speedLabel: string;
+  latencyMs: number;
+  description: string;
+}
+
+export interface TechExplainer {
+  id: string;
+  title: string;
+  category: string;
+  summary: string;
+  icon: string;
+  steps: {
+    stepNumber: number;
+    title: string;
+    description: string;
+    technicalDetail: string;
+  }[];
+}
+
+export interface CultureMemeItem {
+  id: string;
+  title: string;
+  year: number;
+  type: 'Viral Video/Meme' | 'Internet Slang' | 'Community Artifact' | 'Web Design Aesthetic';
+  origin: string;
+  significance: string;
+  catchphrase?: string;
+  tag: string;
+}
+
+export interface TimeCapsuleData {
+  favoriteSite: string;
+  favoriteGame: string;
+  favoriteTech: string;
+  prediction2035: string;
+  messageToFuture: string;
+  createdDate: string;
+}
+
+export interface BuildComponentItem {
+  id: string;
+  name: string;
+  year: number;
+  category: 'OS' | 'Browser' | 'Search' | 'Social' | 'Messenger' | 'MusicPlayer' | 'Device';
+  icon: string;
+  description: string;
+  vibe: string;
+}
+
+export interface ThisDayEvent {
+  id: string;
+  month: number;
+  day: number;
+  year: number;
+  title: string;
+  description: string;
+  category: CategoryType;
+  impact: string;
+}
+
+export interface ScavengerQuest {
+  id: string;
+  title: string;
+  description: string;
+  hint: string;
+  category: string;
+  targetPath?: string;
+  points: number;
+}
+
