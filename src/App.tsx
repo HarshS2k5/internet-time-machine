@@ -23,9 +23,11 @@ import { CategoryExploreView } from './views/CategoryExploreView';
 import { AboutView } from './views/AboutView';
 
 import { HistoricalEvent } from './types/timeline';
-import { ERAS_DATA } from './data/erasData';
 import { audioService } from './services/audioService';
 import { Sparkles, ArrowRight, Hourglass, Globe, ChevronRight } from 'lucide-react';
+import { InstagramIcon } from './components/InstagramIcon';
+
+
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>('home');
@@ -383,11 +385,24 @@ export const App: React.FC = () => {
           </div>
 
 
-          <div className="text-zinc-500 text-center md:text-right text-[11px] font-mono">
-            <span>Built with React 19, TypeScript & Web Audio</span>
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-zinc-500 text-center md:text-right text-[11px] font-mono">
+            <span>Created by <strong className="text-zinc-300 font-semibold">Harsh Sisodia</strong></span>
+            <span className="hidden sm:inline text-zinc-700">•</span>
+            <a
+              href="https://www.instagram.com/hxrsh_s2k14/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-pink-500/50 text-zinc-300 hover:text-pink-300 transition-all group"
+              title="Follow Harsh Sisodia on Instagram (@hxrsh_s2k14)"
+            >
+              <InstagramIcon className="w-3.5 h-3.5 text-pink-400 group-hover:scale-110 transition-transform" />
+              <span className="font-semibold text-zinc-200 group-hover:text-pink-200">@hxrsh_s2k14</span>
+            </a>
           </div>
+
         </div>
       </footer>
+
     </div>
   );
 };

@@ -21,7 +21,9 @@ import {
   Code2,
   User,
 } from 'lucide-react';
+import { InstagramIcon } from '../components/InstagramIcon';
 import { audioService } from '../services/audioService';
+
 
 interface AboutViewProps {
   onNavigate?: (tab: string) => void;
@@ -421,12 +423,24 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onSelectYear }
             </div>
           </div>
 
-          <div className="self-start sm:self-center">
+          <div className="self-start sm:self-center flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700/80 text-[11px] font-mono text-zinc-300">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Created by Harsh Sisodia
             </span>
+            <a
+              href="https://www.instagram.com/hxrsh_s2k14/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-950/40 hover:bg-pink-900/60 border border-pink-500/40 hover:border-pink-400 text-[11px] font-mono text-pink-300 hover:text-white transition-all group"
+              title="Instagram: @hxrsh_s2k14"
+            >
+              <InstagramIcon className="w-3.5 h-3.5 text-pink-400 group-hover:scale-110 transition-transform" />
+              <span>@hxrsh_s2k14</span>
+              <ExternalLink className="w-3 h-3 text-pink-400/60 group-hover:text-white" />
+            </a>
           </div>
+
         </div>
 
         {/* Creator Profile Content */}
@@ -449,10 +463,25 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate, onSelectYear }
               </span>
             </div>
 
+            {/* Instagram Profile Link */}
+            <a
+              href="https://www.instagram.com/hxrsh_s2k14/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-500/15 via-purple-500/15 to-amber-500/15 hover:from-pink-500/25 hover:via-purple-500/25 hover:to-amber-500/25 border border-pink-500/40 hover:border-pink-400 text-pink-300 hover:text-white transition-all text-xs font-mono group shadow-sm shadow-pink-500/10"
+              title="Follow Harsh Sisodia on Instagram (@hxrsh_s2k14)"
+            >
+              <InstagramIcon className="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform" />
+              <span className="font-bold">@hxrsh_s2k14</span>
+              <ExternalLink className="w-3 h-3 text-zinc-500 group-hover:text-pink-300 transition-colors" />
+            </a>
+
+
             <p className="text-[11px] text-zinc-400 font-mono">
               Independent Digital Project
             </p>
           </div>
+
 
           {/* Personal Bio & Visual Badges */}
           <div className="lg:col-span-8 space-y-5">
