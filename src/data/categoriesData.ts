@@ -1,0 +1,68 @@
+import { CategoryInfo } from '../types/timeline';
+
+export const CATEGORIES_DATA: CategoryInfo[] = [
+  {
+    id: 'web',
+    title: 'Web & Browsers',
+    icon: 'Globe',
+    description: 'The evolution of HTML, web browsers, search engines, web standards, and internet protocols.',
+    color: 'emerald',
+    accentHex: '#10b981',
+  },
+  {
+    id: 'gaming',
+    title: 'Gaming & Virtual Worlds',
+    icon: 'Gamepad2',
+    description: 'From 8-bit cartridges and 3D graphics cards to MMOs, Steam, ray tracing, and modern competitive esports.',
+    color: 'rose',
+    accentHex: '#f43f5e',
+  },
+  {
+    id: 'mobile',
+    title: 'Mobile & Smartphones',
+    icon: 'Smartphone',
+    description: 'The journey from early brick cellular phones and Nokia keypads to capacitive multi-touch iPhones and foldables.',
+    color: 'sky',
+    accentHex: '#0284c7',
+  },
+  {
+    id: 'computers',
+    title: 'Computers & Hardware',
+    icon: 'Cpu',
+    description: 'CPUs, microcomputers, GPUs, laptops, and chip architectures that powered the digital age.',
+    color: 'amber',
+    accentHex: '#f59e0b',
+  },
+  {
+    id: 'ai',
+    title: 'Artificial Intelligence',
+    icon: 'Bot',
+    description: 'From Turing and symbolic AI to deep neural networks, Transformers, Large Language Models, and autonomous agents.',
+    color: 'cyan',
+    accentHex: '#06b6d4',
+  },
+  {
+    id: 'internet',
+    title: 'Internet Infrastructure',
+    icon: 'Wifi',
+    description: 'ARPANET, TCP/IP, DNS, transatlantic fiber optics, 56k dial-up, Wi-Fi, 4G, 5G, and content delivery networks.',
+    color: 'blue',
+    accentHex: '#3b82f6',
+  },
+  {
+    id: 'social',
+    title: 'Social Media & Culture',
+    icon: 'MessageSquare',
+    description: 'Newsgroups, chat rooms, MySpace, Facebook, Twitter/X, Instagram, TikTok, viral memes, and online communities.',
+    color: 'purple',
+    accentHex: '#a855f7',
+  },
+  {
+    id: 'media',
+    title: 'Online Media & Streaming',
+    icon: 'Film',
+    description: 'MP3 compression, Napster, Flash video, YouTube, Netflix streaming, Twitch, Spotify, and digital audio/video.',
+    color: 'pink',
+    accentHex: '#ec4899',
+  },
+];
